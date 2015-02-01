@@ -9,8 +9,8 @@ public class MakeChange
 	  
 	    
 
-	    MakeChangeWorker makeChange = new MakeChangeWorker(amount);
-	    makeChange.test();
+	    MakeChangeWorker makeChange = new MakeChangeWorker();
+	    makeChange.calcChange(amount);
 	
     }
 
