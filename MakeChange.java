@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class MakeChange 
 {
@@ -10,8 +12,10 @@ public class MakeChange
 	    
 
 	    MakeChangeWorker makeChange = new MakeChangeWorker();
-	    makeChange.calcChange(amount);
+	    makeChange.printSolutions(makeChange.search(amount, new int[3], new ArrayList<int[]>(), 0), amount);
 	
     }
 
 }
+
+
