@@ -12,7 +12,7 @@ public class MakeChange
 	    
 
 	    MakeChangeWorker makeChange = new MakeChangeWorker();
-	    makeChange.printCombinations(makeChange.findCombinations(amount, new int[3], new ArrayList<int[]>(), 0), amount);
+	    makeChange.printCombinations(amount, makeChange.findCombinations(amount, new int[3], new ArrayList<int[]>(), 0));
 	
     }
 

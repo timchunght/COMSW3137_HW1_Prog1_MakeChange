@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MakeChangeWorker 
 {
@@ -14,7 +15,7 @@ public class MakeChangeWorker
 	{
 		int[] VALUES = { 5, 10, 25 };
 		
-		//return the an empty AL of size 0 if amount is not divisible by 5
+		//return an empty AL of size 0 if amount is not divisible by 5
 		if (amount % 5 != 0)
 		{
 			return combinations;
@@ -23,6 +24,7 @@ public class MakeChangeWorker
 		//if amount is 0, we should have reached a combo, so add array/combo to AL
 		if (amount == 0) 
 		{
+			System.out.println(Arrays.toString(coinCounts));
 			combinations.add(coinCounts);
 			
 		}
@@ -35,8 +37,9 @@ public class MakeChangeWorker
 			{
 				//prepare a duplicate coinCounts array for recursion
 				int[] newCoinCounts = (int[]) coinCounts.clone();
-				newCoinCounts[i]++;
-
+				
+				newCoinCounts[i] = newCoinCounts[i] + 1;
+				
 				combinations = findCombinations(amount - VALUES[i], newCoinCounts, combinations, i);
 
 			}
@@ -45,33 +48,40 @@ public class MakeChangeWorker
 		return combinations;
 	}
 
-	public void printCombinations(ArrayList<int[]> combinations, int amount) 
+	public void printCombinations(int amount, ArrayList<int[]> combinations) 
 	{
 		int[] VALUES = { 5, 10, 25 };
 		
 		ArrayList<String> output = new ArrayList<String>();
 		if (combinations.size() == 0) 
 		{
-			System.out.println(amount + " can't be changed.");
+			System.out.println(amount + " cannot be changed.");
 			
 		}
-		
-		for (int s = 0; s < combinations.size(); s++) 
+		else
 		{
-			String header = "Change for " + amount + " = ";
-			for (int i = 0; i < VALUES.length; i++) 
+			for(int[] combo: combinations)
 			{
-				for (int j = 0; j < combinations.get(s)[i]; j++) 
-				{
-					header+=(VALUES[i] + " ");
-				}
+				System.out.println(combo);
 			}
-			output.add(header);
-		}
-		
-		for( String s : output)
-		{
-			System.out.println(s);
+			
+			for (int s = 0; s < combinations.size(); s++) 
+			{
+				String header = "Change for " + amount + " = ";
+				for (int i = 0; i < VALUES.length; i++) 
+				{
+					for (int j = 0; j < combinations.get(s)[i]; j++) 
+					{
+						header+=(VALUES[i] + " ");
+					}
+				}
+				output.add(header);
+			}
+			
+			for( String s : output)
+			{
+				System.out.println(s);
+			}
 		}
 	}
 
