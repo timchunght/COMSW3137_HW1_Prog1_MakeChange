@@ -23,7 +23,7 @@ public class MakeChangeWorker
 		}
 
 		//if amount is 0, we should have reached a combo, so add array/combo to AL
-		if (amount == 0) 
+		else if (amount == 0) 
 		{
 			//System.out.println(Arrays.toString(coinCounts));
 			combinations.add(coinCounts);
@@ -31,17 +31,17 @@ public class MakeChangeWorker
 		}
 
 		//Start from the given index, 0 is the index for nickel, 1 for dime, and 2 for quarter
-		for (int i = index; i < VALUES.length; i++) 
+		for (int i = index; i < 3; i++) 
 		{
 			
 			if (VALUES[i] <= amount) 
 			{
 				//prepare a duplicate coinCounts array for recursion
-				int[] newCoinCounts = (int[]) coinCounts.clone();
+				int[] newCoinCounts = coinCounts.clone();
 				
 				newCoinCounts[i] = newCoinCounts[i] + 1;
 				
-				combinations = findCombinations(amount - VALUES[i], newCoinCounts, combinations, i);
+				findCombinations(amount - VALUES[i], newCoinCounts, combinations, i);
 
 			}
 		}
@@ -58,11 +58,6 @@ public class MakeChangeWorker
 		}
 		else
 		{
-			for(int[] combo: combinations)
-			{
-				System.out.println(combo);
-			}
-			
 			
 			for (int[] combo : combinations) 
 			{
