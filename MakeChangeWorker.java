@@ -13,8 +13,7 @@ public class MakeChangeWorker
 	public void findCombinations(int amount, int index, int[] coinCounts) 
 	{
 		int[] VALUES = { 5, 10, 25 };
-		//System.out.println("amount:" + amount + " Coin counts: " + Arrays.toString(coinCounts) + " index: " + index);
-
+		
 		//return an empty AL of size 0 if amount is not divisible by 5
 		if (amount % 5 != 0)
 		{
@@ -33,6 +32,7 @@ public class MakeChangeWorker
 		//Start from the given index, 0 is the index for nickel, 1 for dime, and 2 for quarter
 			for (int i = index; i < 3; i++) 
 			{
+				
 				
 				if (VALUES[i] <= amount) 
 				{
