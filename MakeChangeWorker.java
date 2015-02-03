@@ -1,101 +1,70 @@
 import java.util.ArrayList;
 
+public class MakeChangeWorker {
 
-public class MakeChangeWorker 
-{
-	
-	
-	public MakeChangeWorker()
+	public MakeChangeWorker() 
 	{
-		
-		
+
 	}
-	
-	/**
-	public void test()
+
+
+	public ArrayList<int[]> findCombinations(int amount, int[] coinCounts,
+			ArrayList<int[]> combinations, int index) 
 	{
-		System.out.println(amount);
-	}
-	**/
-	
-	public void calcChange(int amount)
-	{
-		
-		if(amount%5 != 0)
+		int[] VALUES = { 5, 10, 25 };
+
+		if (amount % 5 != 0)
 		{
-			System.out.println(amount + " can't be changed");
+			return combinations;
 		}
-		else if(amount/5 == 1)
+
+		
+		if (amount == 0) 
 		{
-			System.out.println("5");
+			combinations.add(coinCounts);
 			
 		}
-		else if(amount >= 25)
+
+		
+		for (int i = index; i < VALUES.length; i++) 
 		{
-			amount = amount % 25;
-			System.out.println(amount);
-			calcChange(amount);
+			
+			if (VALUES[i] <= amount) 
+			{
+				
+				int[] newCoinCounts = (int[]) coinCounts.clone();
+				newCoinCounts[i]++;
+
+				combinations = findCombinations(amount - VALUES[i], newCoinCounts, combinations, i);
+
+			}
+		}
+		
+		return combinations;
+	}
+
+	public void printCombinations(ArrayList<int[]> combinations, int amount) 
+	{
+		int[] VALUES = { 5, 10, 25 };
+		
+		if (combinations.size() == 0) 
+		{
+			System.out.println(amount + " can't be changed.");
 			
 		}
 		
-		
-			
+		for (int s = 0; s < combinations.size(); s++) 
+		{
+			System.out.print("Change for " + amount + " = ");
+			for (int i = 0; i < VALUES.length; i++) 
+			{
+				for (int j = 0; j < combinations.get(s)[i]; j++) 
+				{
+					System.out.print(VALUES[i] + " ");
+				}
+			}
+			System.out.println();
+		}
 	}
-	
-	public ArrayList<int[]> search(int amount, int[] current, 
-            ArrayList<int[]> solutions, int max)
-    {
-		int[] COINS = {5, 10, 25};
-        // Since all the coins are multiples of 5, return an empty array if
-        // the amount is not a multiple of 5. This results in an empty array
-        // for any inputted amount that is not a multiple of 5.
-        if (amount % 5 != 0) return solutions;
-        
-        // A valid solution has been calculated. Store the current solution.
-        if (amount == 0)
-        {
-            solutions.add(current);
-            return solutions;
-        }
-        
-        // Only start from max to reduce the amount of cases to check.
-        for (int i = max; i < COINS.length; i++)
-        {
-            // If the coin being checked is less than the amount, recurse.
-            if (COINS[i] <= amount)
-            {
-                // Clone array and modify accordingly.
-                int[] tempCurrent = (int[]) current.clone();
-                tempCurrent[i]++;
-                solutions = search(amount - COINS[i], 
-                        tempCurrent, solutions, i);
-            }
-        }
-        return solutions;
-    }
-	
-	public void printSolutions(ArrayList<int[]> solutions, int amount)
-    {
-		int[] COINS = {5, 10, 25};
-        // If ArrayList is empty, tell user.
-        if(solutions.isEmpty())
-        {
-            System.out.println(amount + " can't be changed.");
-            return;
-        }
-        // Otherwise, print all the solutions.
-        for (int[] solution : solutions)
-        {
-            System.out.print("Change for " + amount + " = ");
-            for (int i = 0; i < COINS.length; i++)
-            {
-                for(int j = 0; j < solution[i]; j++)
-                {
-                    System.out.print(COINS[i] + " ");
-                }
-            }
-            System.out.println();
-        }   
-    }
 
 }
