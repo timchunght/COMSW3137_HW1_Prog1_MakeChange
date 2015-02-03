@@ -14,7 +14,8 @@ public class MakeChangeWorker
 			ArrayList<int[]> combinations, int index) 
 	{
 		int[] VALUES = { 5, 10, 25 };
-		
+		System.out.println("amount:" + amount + " Coin counts: " + Arrays.toString(coinCounts) + " index: " + index);
+
 		//return an empty AL of size 0 if amount is not divisible by 5
 		if (amount % 5 != 0)
 		{
@@ -24,7 +25,7 @@ public class MakeChangeWorker
 		//if amount is 0, we should have reached a combo, so add array/combo to AL
 		if (amount == 0) 
 		{
-			System.out.println(Arrays.toString(coinCounts));
+			//System.out.println(Arrays.toString(coinCounts));
 			combinations.add(coinCounts);
 			
 		}
