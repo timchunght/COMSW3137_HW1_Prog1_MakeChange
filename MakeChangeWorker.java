@@ -10,7 +10,6 @@ public class MakeChangeWorker
 	public void findCombinations(int amount, int index, int[] coinCounts) 
 	{
 		int[] VALUES = { 5, 10, 25 };
-		
 		//return an empty AL of size 0 if amount is not divisible by 5
 		if (amount % 5 != 0)
 		{
@@ -20,31 +19,21 @@ public class MakeChangeWorker
 		else if (amount == 0) 
 		{
 			printCombo(coinCounts);
-			
-			
-			
 		}
 		else
 		{
-		//Start from the given index, 0 is the index for nickel, 1 for dime, and 2 for quarter
+		    //Start from the given index, 0 is the index for nickel, 1 for dime, and 2 for quarter
 			for (int i = index; i < 3; i++) 
 			{
-				
-				
 				if (VALUES[i] <= amount) 
 				{
 					//prepare a duplicate coinCounts array for recursion
 					int[] newCoinCounts = coinCounts.clone();
-					
 					newCoinCounts[i] = newCoinCounts[i] + 1;
-					
 					findCombinations(amount - VALUES[i], i, newCoinCounts);
-	
 				}
 			}
 		}
-		
-		
 	}
 	
 	//Takes an int[] of counts as arguments, int[0] is count of nickel, int[1] is count of dime, int[2] is count of quarter
