@@ -9,7 +9,7 @@ public class MakeChangeWorker
 		this.amount = amount;
 	}
 
-
+	//index is used with VALUES, it avoids recursive branching
 	public void findCombinations(int amount, int index, int[] coinCounts) 
 	{
 		int[] VALUES = { 5, 10, 25 };
