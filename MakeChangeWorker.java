@@ -50,9 +50,6 @@ public class MakeChangeWorker
 
 	public void printCombinations(int amount, ArrayList<int[]> combinations) 
 	{
-		int[] VALUES = { 5, 10, 25 };
-		
-		ArrayList<String> output = new ArrayList<String>();
 		if (combinations.size() == 0) 
 		{
 			System.out.println(amount + " cannot be changed.");
@@ -65,23 +62,45 @@ public class MakeChangeWorker
 				System.out.println(combo);
 			}
 			
-			for (int s = 0; s < combinations.size(); s++) 
-			{
-				String header = "Change for " + amount + " = ";
-				for (int i = 0; i < VALUES.length; i++) 
-				{
-					for (int j = 0; j < combinations.get(s)[i]; j++) 
-					{
-						header+=(VALUES[i] + " ");
-					}
-				}
-				output.add(header);
-			}
 			
-			for( String s : output)
+			for (int[] combo : combinations) 
 			{
-				System.out.println(s);
+				System.out.print("Change for " + amount + " = ");
+				for(int i = 0; i < 3; i++)
+				{ 
+					if(i == 0)
+					{
+						for(int j = 0; j < combo[i]; j++)
+						{
+							System.out.print(5 + " ");
+						}
+						
+						
+					}
+					else if(i == 1)
+					{
+						for(int j = 0; j < combo[i]; j++)
+						{
+							System.out.print(10 + " ");
+						}
+						
+						
+					}
+					else if(i == 2)
+					{
+						for(int j = 0; j < combo[i]; j++)
+						{
+							System.out.print(25 + " ");
+						}
+						
+						
+					}
+		
+				}
+				System.out.println();
+				
 			}
+	
 		}
 	}
 
