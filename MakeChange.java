@@ -11,8 +11,9 @@ public class MakeChange
 	  
 	    
 
-	    MakeChangeWorker makeChange = new MakeChangeWorker();
-	    makeChange.printCombinations(amount, makeChange.findCombinations(amount, new int[3], new ArrayList<int[]>(), 0));
+	    MakeChangeWorker makeChange = new MakeChangeWorker(amount);
+	    
+	    makeChange.findCombinations(amount, 0, new int[3]);
 	
     }
 
